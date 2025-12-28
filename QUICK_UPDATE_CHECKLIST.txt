@@ -1,0 +1,52 @@
+═══════════════════════════════════════════════════════════════
+  QUICK FILE UPDATE - CHECKLIST (No Docker Rebuild!)
+═══════════════════════════════════════════════════════════════
+
+ON WINDOWS PC:
+═══════════════════════════════════════════════════════════════
+□ 1. Open PowerShell in project folder
+□ 2. Run: .\update-files-only.ps1
+   OR manually: npm run build
+□ 3. Wait for build to complete (~30 seconds - 1 minute)
+□ 4. Copy entire 'dist' folder to USB drive
+□ 5. Optionally copy: update-container.sh script
+□ 6. Safely eject USB
+
+ON PROXMOX SERVER:
+═══════════════════════════════════════════════════════════════
+□ 1. Plug in USB drive
+□ 2. Mount USB (if needed):
+      sudo mkdir -p /mnt/usb
+      sudo mount /dev/sdb1 /mnt/usb
+□ 3. Copy dist folder to server:
+      mkdir -p ~/temp-update
+      cp -r /mnt/usb/dist ~/temp-update/
+□ 4. Copy update script (if using):
+      cp /mnt/usb/update-container.sh ~/
+      chmod +x ~/update-container.sh
+□ 5. Update container:
+
+   Option A - Using script (easiest):
+      ./update-container.sh tic-tac-toe ~/temp-update/dist
+
+   Option B - Manual commands:
+      docker cp ~/temp-update/dist/. tic-tac-toe:/usr/share/nginx/html/
+      docker exec tic-tac-toe nginx -s reload
+
+□ 6. Verify:
+      docker ps | grep tic-tac-toe
+      docker logs tic-tac-toe
+□ 7. Test in browser (clear cache!):
+      http://your-server-ip
+
+COMPARISON:
+═══════════════════════════════════════════════════════════════
+Full Docker Rebuild:    5-10 minutes, 500MB-1GB file
+File Update Only:       1-2 minutes, 1-5MB file
+                        ⚡ MUCH FASTER!
+
+═══════════════════════════════════════════════════════════════
+
+
+
+

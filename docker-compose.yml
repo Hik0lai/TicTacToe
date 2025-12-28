@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  tic-tac-toe:
+    image: tic-tac-toe:latest
+    container_name: tic-tac-toe
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+# Usage:
+#   Build and deploy: docker-compose up -d
+#   Stop:             docker-compose down
+#   View logs:        docker-compose logs -f
+#   Rebuild:          docker-compose up -d --build
+
+
+
+
