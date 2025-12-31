@@ -1,25 +1,14 @@
 version: '3.8'
 
 services:
-  tic-tac-toe:
+  tic-tac-toe: # This is just the service label in YAML
+    build: .
     image: tic-tac-toe:latest
-    container_name: tic-tac-toe
-    ports:
-      - "80:80"
+    container_name: nginx-react  # Matches your working setup
     restart: unless-stopped
     networks:
-      - app-network
+      - proxy
 
 networks:
-  app-network:
-    driver: bridge
-
-# Usage:
-#   Build and deploy: docker-compose up -d
-#   Stop:             docker-compose down
-#   View logs:        docker-compose logs -f
-#   Rebuild:          docker-compose up -d --build
-
-
-
-
+  proxy:
+    external: true
