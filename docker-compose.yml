@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  tic-tac-toe: # This is just the service label in YAML
+  tic-tac-toe: # This is just the service label in YAML 
     build: .
     image: tic-tac-toe:latest
     container_name: nginx-react  # Matches your working setup
