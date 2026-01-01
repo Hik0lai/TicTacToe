@@ -1,0 +1,16 @@
+name: Build and Deploy
+on:
+  push:
+    branches: [ main ]  # This makes it trigger every time you push to main
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # This tells it to use your Docker VM runner
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Update Docker Container
+        run: |
+          # This command builds your new code and restarts the nginx-react container
+          docker compose up -d --build
