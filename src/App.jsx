@@ -70,14 +70,14 @@ function App() {
     <div id="game-container">
       <ol id="players" className="highlight-player">
         <Player 
-          initialName="PPlayer 1" 
+          initialName="PPPlayer 1" 
           symbol="X" 
           isActive={activePlayer==='X' && !gameWon}
           wins={player1Wins}
           onResetCounter={() => handleResetCounter('X')}
         />
         <Player 
-          initialName="PPlayer 2" 
+          initialName="PPPlayer 2" 
           symbol="O" 
           isActive={activePlayer==='O' && !gameWon}
           wins={player2Wins}
